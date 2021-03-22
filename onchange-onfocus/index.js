@@ -1,4 +1,4 @@
-let inp = document.querySelector("input")
+/* let inp = document.querySelector("input")
 
 inp.addEventListener("focus",(e)=>{
     inp.style.backgroundColor="yellow"
@@ -34,7 +34,7 @@ radiobtns.forEach(radio=>{
         console.log(radio.value)
         console.log(radio.checked)
     })
-})
+}) */
 
 /* inp.addEventListener("change",(e)=>{
     console.log(inp.value)
@@ -52,3 +52,36 @@ radiobtns.forEach(radio=>{
 /* document.addEventListener("keydown",(e)=>{
     console.log(e)
 }) */
+
+
+
+let ball = document.querySelector(".ball")
+let position={
+    x:50,
+    y:50
+}
+ball.style.left=position.x+"px"
+ball.style.top=position.y+"px"
+
+document.addEventListener("keydown",(e)=>{
+    console.log(e.keyCode)
+    if(e.keyCode===39){
+        console.log(window.innerWidth)
+        position.x++;
+        if(position.x===380){
+            console.log("you touches the border")
+        }else{
+        ball.style.left=position.x+"px"
+        }
+        
+    }else if(e.keyCode===37){
+        position.x--;
+        ball.style.left=position.x+"px"
+    }else if(e.keyCode===38){
+        position.y--;
+        ball.style.top=position.y+"px"
+    }else if(e.keyCode===40){
+        position.y++;
+        ball.style.top=position.y+"px"
+    }
+})
