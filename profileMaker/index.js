@@ -73,5 +73,6 @@ form.addEventListener("submit",(e)=>{
 
     //append this card into document
     ul.appendChild(card)
+    form.reset()
 
 })
