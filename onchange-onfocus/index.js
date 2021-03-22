@@ -2,7 +2,6 @@ let inp = document.querySelector("input")
 
 inp.addEventListener("focus",(e)=>{
     inp.style.backgroundColor="yellow"
-    inp.style.fontSize="40px"
 })
 
 let checkbox = document.querySelector("input[type=checkbox]")
@@ -13,7 +12,30 @@ checkbox.addEventListener("change",(e)=>{
 })
 
 
-let checkbox = document.querySelector("input[type=checkbox]")
+let range = document.querySelector("input[type=range]")
+
+range.addEventListener("change",(e)=>{
+    let h1= document.querySelector("h1")
+    h1.style.fontSize=range.value+"px"
+    console.log(range.value)
+})
+
+
+let select= document.querySelector("select")
+select.addEventListener("change",(e)=>{
+    console.log(e.target.value)
+})
+
+
+let radiobtns = document.querySelectorAll("input[type=radio]")
+
+radiobtns.forEach(radio=>{
+    radio.addEventListener("change",(e)=>{
+        console.log(radio.value)
+        console.log(radio.checked)
+    })
+})
+
 /* inp.addEventListener("change",(e)=>{
     console.log(inp.value)
 }) */
