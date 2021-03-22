@@ -85,3 +85,10 @@ document.addEventListener("keydown",(e)=>{
         ball.style.top=position.y+"px"
     }
 })
+
+
+
+document.addEventListener("mousemove",(e)=>{
+    console.log(e.clientY)
+    console.log(e.clientX)
+})
