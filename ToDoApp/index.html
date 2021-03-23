@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDo App</title>
     <style>
-        h1{
-            background-color: red;
-            color: white;
-            text-align: center;
-        }
-        div{
-            display: flex;
-            justify-content: center;
-        }
-        li{
-            border: 1px solid black;
-            padding: 5px;
-            display: flex;
-            justify-content: space-between;
-        }
-        span{
-            background: gray;
-            color: white;
-            padding: 5px;
-        }
+      h1 {
+        background-color: red;
+        color: white;
+        text-align: center;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+      }
+      li {
+        border: 1px solid black;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+      }
+      span {
+        background: gray;
+        color: white;
+        padding: 5px;
+        cursor: pointer;
+      }
+      .done{
+          background-color: green;
+          color: white;
+          text-decoration: line-through;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>TODO APP</h1>
-<div>
-     <input type="text" name="task" placeholder="Task">
-    <button>Add todo</button>
-</div>
-   
+    <div>
+      <input type="text" name="task" placeholder="Task" />
+      <button>Add todo</button>
+    </div>
 
     <ul>
-    
+        <!-- //display all user tasks -->
     </ul>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>
