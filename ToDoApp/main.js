@@ -4,7 +4,10 @@
 
 let inp = document.querySelector("input")
 let btn = document.querySelector("button")
+
 let ul = document.querySelector("ul")
+//initial value
+let tasks=JSON.parse(localStorage.getItem("tasks"))
 
 function createTask(value){
     let li = document.createElement("li")
@@ -15,7 +18,8 @@ function createTask(value){
     ul.appendChild(li)
 }
 
-let tasks=["task1"]
+
+
 //user provides you value through input field
 btn.addEventListener("click", (e)=>{
     console.log("clicked")
@@ -39,6 +43,16 @@ ul.addEventListener("click",(e)=>{
     }
     else if(e.target.nodeName==="SPAN"){
         ul.removeChild(e.target.parentElement)
+        console.log(e.target.parentElement.innerText)
+        let text =e.target.parentElement.innerText
+        let value = text.slice(0,text.length-1)
+
+        console.log(value)
+
+        let updatedArray = tasks.filter(task=>task!==value)
+        localStorage.setItem("tasks",JSON.stringify(updatedArray))
+        
+        tasks=updatedArray
     }
 })
 
