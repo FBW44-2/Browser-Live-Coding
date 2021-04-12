@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>React in Browser</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      /*  console.log(React) */
+      console.log(ReactDOM);
+      /* document.createElement("h1") */
+      /* let element=document.createElement("h1")
+element.innerHTML="Hello World"
+element.id="header"
+element.className="heading"
+
+document.getElementById("root").append(element) */
+
+      //create react element
+      let element = React.createElement(
+        "h1",
+        { id: "header", className: "heading" },
+        "Hello World"
+      );
+      console.log(element);
+
+     /*  let mainData = React.createElement(
+        "div",
+        null,
+        React.createElement("h1", null, "hello world"),
+        React.createElement("p", null, "lrem jsjgfakjgsfkjagfjagjfsajhf")
+      ); */
+        let userData={
+            name:"John",
+            age:22
+        }
+       /*  `hello ${userName}` */
+   /*    let mainData = (
+        <div id="main" className="main">
+          <h1>Hello {userData.name}</h1>
+          <p>
+            You are {userData.age} years old
+          </p>
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>profile</li>
+          </ul>
+        </div>
+      ); */
+
+        //functional component
+        function MainData(){
+            return(
+                <div id="main" className="main">
+          <h1>Hello {userData.name}</h1>
+          <p>
+            You are {userData.age} years old
+          </p>
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>profile</li>
+          </ul>
+        </div>
+            )
+        }
+    
+    function NavBar(){
+        return(
+            <nav>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nobis excepturi quas adipisci laboriosam mollitia aperiam error itaque nam facere, fugiat deleniti deserunt officia laudantium maxime quis fuga dolore rerum! Necessitatibus, suscipit porro? Sint aliquam vitae voluptatum ex perferendis vero, magnam dolorum, fuga reprehenderit qui eveniet quisquam at ipsa enim sed non quia facilis harum doloremque eos laborum similique odio repellendus. Earum in aspernatur beatae soluta incidunt labore perferendis! Inventore necessitatibus quaerat provident mollitia, est, pariatur fugiat facilis similique exercitationem, repellat optio itaque? Officiis doloribus veniam accusamus assumenda optio vel, ad dolore ipsa modi quod libero quo soluta. Inventore, rem!</p>
+            </nav>
+        )
+    }
+    function ImageGallery(){
+        return(
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" alt="" width="400"/>
+        )
+    }
+
+    function App(){
+        return(
+            <div>
+            <MainData/>
+            <NavBar/>
+            <ImageGallery/>
+            <NavBar/>
+            <ImageGallery/>
+            <NavBar/>
+            <ImageGallery/>
+            <MainData/>
+            </div> 
+        )
+    }
+
+
+
+
+
+/* PascalCase (MainData)
+CamelCase (mainData) */
+
+      //which element      //where in DOM
+      ReactDOM.render(<App/>, document.getElementById("root")); //virtual DOM
+    </script>
+
+  </body>
+</html>
