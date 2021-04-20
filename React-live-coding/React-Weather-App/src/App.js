@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import WeatherDataComponent from "./WeatherDataComponent";
+import "./WeatherData.css"
 
 
 export default class App extends Component {
   state = {
     cityName: "",
     weatherData: null,
+    displayCity:""
   };
 
   getUserCity = (e) => {
@@ -31,7 +33,7 @@ export default class App extends Component {
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ weatherData: data }))
+      .then((data) => this.setState({ weatherData: data, displayCity:this.state.cityName }))
       .catch(err=>console.log(err))
   };
 
@@ -43,12 +45,11 @@ export default class App extends Component {
 
 
   render() {
-    console.log(process.env.REACT_APP_API_KEY)
    let data=this.state.weatherData
 
     return (
-      <div>
-        <h1>Weather App</h1>
+      <div className="App">
+        <h1 className="header">Weather App</h1>
         <form onSubmit={this.formSubmission}>
           <input
             type="text"
@@ -60,8 +61,9 @@ export default class App extends Component {
 
 
       { data &&  <WeatherDataComponent 
-          city={this.state.cityName} 
+          city={this.state.displayCity} 
           temp={data.main.temp}
+          pressure={data.main.pressure}
           maxTemp={data.main.temp_max}
           minTemp={data.main.temp_min}
           humidity={data.main.humidity}
