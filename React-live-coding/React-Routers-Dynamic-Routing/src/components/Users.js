@@ -33,7 +33,7 @@ export default class Users extends Component {
             );
           })}
         </ul>
-        <Route path="/users/:name" component={User}/> {/* //we can't pass custom props  */}
+       
        {/* <Route path="/users/:name">
            <User users={this.state.users}/>
        </Route> //we will not receive browser router props */}

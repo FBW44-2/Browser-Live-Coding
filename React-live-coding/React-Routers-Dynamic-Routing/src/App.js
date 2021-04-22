@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import { NavLink, Route, Switch } from "react-router-dom";
 import PageNotFound from "./components/PageNotFound";
 import "./App.css"
+import User from "./components/User"
 
 export default class App extends Component {
   render() {
@@ -48,8 +49,9 @@ export default class App extends Component {
             <About />
           </Route>
 
-          <Route path="/users" component={Users} />
+          <Route exact path="/users" component={Users} />
           <Route path="/contact" component={Contact} />
+          <Route path="/users/:name" component={User}/> {/* //we can't pass custom props  */}
           <Route component={PageNotFound} />
         </Switch>
       </div>

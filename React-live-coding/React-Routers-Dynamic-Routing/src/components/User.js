@@ -1,8 +1,12 @@
 import React from "react";
+import queryString from "query-string"
 
 export default function User(props) {
-    console.log(props)
-  const { first_name, last_name, avatar } = props.location.state;
+
+   /*  console.log(queryString.parse(props.location.search)) */
+ /*    let query= props.location && queryString.parse(props.location.search) */
+
+  const { first_name, last_name, avatar ,email} = props.location.state;
  /*    console.log(props.match.params.name)
     const user = props.users.find(item=>item.first_name===props.match.params.name) */
 
@@ -19,9 +23,10 @@ export default function User(props) {
       </h2>
       <img src={user.avatar} alt="" width="200" /> */}
       <h2>
-        {first_name} {last_name}
+          { first_name  }
       </h2>
       <img src={avatar} alt="" width="200" />
+      <button onClick={()=>props.history.goBack()}>go back</button>
     </div>
   );
 }
