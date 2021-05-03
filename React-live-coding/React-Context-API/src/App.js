@@ -1,25 +1,21 @@
-import React, { createContext, useState } from "react";
+import React from "react";
 import Child1 from "./Child1";
 import Child2 from "./Child2";
-
-export const MyContext = createContext(null); //container with null value inside it
-
-console.log(MyContext);
+import Container from "./Context/Container"
 
 function App() {
-const [count,setCount]=useState(0)
-const [users,setUsers]=useState([])
-
-let context = {count,setCount,users,setUsers}
-
   return (
-    <MyContext.Provider value={context}>
+    <Container>
       <div className="App">
         <h1>Context API</h1>
-        <Child1 />
-        <Child2 />
+        <Child1></Child1>
+        <Child2></Child2>
       </div>
-    </MyContext.Provider>
+      {/*  <User user={"Naqvi"}>
+     <NestedComponent count={count}> hello </NestedComponent>
+  
+    </User> */}
+    </Container>
   );
 }
 

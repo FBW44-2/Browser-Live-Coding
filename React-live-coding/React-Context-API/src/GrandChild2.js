@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MyContext } from "./App";
+import { MyContext } from "./Context/MyContext";
 
 export default class GrandChild2 extends Component {
   render() {

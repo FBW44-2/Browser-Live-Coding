@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import GrandChild2 from "./GrandChild2";
-import { MyContext } from "./App";
+import { MyContext } from "./Context/MyContext";
 
 export default function Child2() {
     const {count,setCount} = useContext(MyContext)
