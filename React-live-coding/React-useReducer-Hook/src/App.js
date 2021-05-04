@@ -9,6 +9,9 @@ const initialState = {
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
+  //dispatch is a method which you will use to send instructions to Reducer function
+  //dispatch Actions
+  //Actions(instruction, {type, payload})
   const task = useRef();
   return (
     <div className="App">
