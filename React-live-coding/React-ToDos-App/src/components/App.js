@@ -3,24 +3,25 @@ import "../css/App.scss";
 import Navigation from "./Navigation";
 import ToDosContainer from "./ToDosContainer";
 import ToDonesContainer from "./ToDonesContainer";
+import { v4 as uuid } from 'uuid';
 
 const App = () => {
 
   const [tasks, setTasks] = useState([
-    {id:"1", text: "Make a website", done: true },
-    {id:"2", text: "Make a website", done: true },
-    {id:"3", text: "Pay the rent", done: true },
-    {id:"4", text: "Call my mom", done: true },
-    {id:"5", text: "Walk the dog", done: false },
-    {id:"6", text: "Finish reading my book", done: true },
-    {id:"7", text: "Make more moneys", done: true },
-    {id:"8", text: "Make so moneys", done: false },
-    {id:"9", text: "Wash my face!", done: false }
+    {id:uuid(), text: "Make a website", done: true },
+    {id:uuid(), text: "Make a website", done: true },
+    {id:uuid(), text: "Pay the rent", done: true },
+    {id:uuid(), text: "Call my mom", done: true },
+    {id:uuid(), text: "Walk the dog", done: false },
+    {id:uuid(), text: "Finish reading my book", done: true },
+    {id:uuid(), text: "Make more moneys", done: true },
+    {id:uuid(), text: "Make so moneys", done: false },
+    {id:uuid(), text: "Wash my face!", done: false }
   ]);
 
 
   const AddItem=(text)=>{
-    let task = {text : text, done:false}
+    let task = {id:uuid() , text : text, done:false}
     setTasks( [ task,  ...tasks] )
   }
 
@@ -40,7 +41,7 @@ const App = () => {
     })  */
   /*   let updatedTasks = tasks.map(item=>item.id===id ? {...item,done:!item.done}:item)
     setTasks(updatedTasks) */
-    
+
     setTasks(tasks.map(item=>item.id===id ? {...item,done:!item.done}:item) )
 
   }
