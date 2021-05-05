@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef ,useState } from 'react';
 
 const ToDosContainer = ({TODOS , AddItem, UpdateItem}) => {
 
@@ -19,8 +19,15 @@ const input = useRef()
 const handleSubmit=(e)=>{
   e.preventDefault()
   console.log(input.current.value)
+  setDisabled(true)
+
   AddItem(input.current.value)
+  /* e.target.reset() */
+  input.current.value=""
+  setTimeout(()=>{setDisabled(false)},2000)
+  
 }
+const [disabled,setDisabled]=useState(false)
 
 
   return (
@@ -29,7 +36,7 @@ const handleSubmit=(e)=>{
         <label className="input-item">
           <input type="text" name="todo" ref={input}  />
         </label>
-        <input className="btn" type="submit" value="ADD" />
+        <input disabled={disabled} className="btn" type="submit" value="ADD" />
       </form>
       <div className="todos">
         <h3>TO DO</h3>
