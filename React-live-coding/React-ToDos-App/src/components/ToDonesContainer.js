@@ -1,19 +1,13 @@
 import React from 'react';
 
-const ToDonesContainer = () => {
-  const todones = [
-    { text: 'Make a website', done: true },
-    { text: 'Call my mom', done: true },
-    { text: 'Finish reading my book', done: true },
-    { text: 'Make more moneys', done: true }
-  ];
-
-  const toDoNesItems = todones.map(el => {
+const ToDonesContainer = ({TODONES,UpdateItem}) => {
+  
+  const toDoNesItems = TODONES.map(el => {
     return (
-      <div className="todones-item" key={el.text}>
+      <div className="todones-item" key={el.id}>
         <p>{el.text}</p>
         <div className="actions">
-          <button className="btn">&#8635;</button>
+          <button className="btn" onClick={()=>UpdateItem(el.id)}>&#8635;</button>
         </div>
       </div>
     );
@@ -22,7 +16,7 @@ const ToDonesContainer = () => {
   return (
     <div className="todones-container">
       <h3>BACKLOG</h3>
-      {todones.length > 0 && toDoNesItems}
+      {TODONES.length > 0 && toDoNesItems}
     </div>
   );
 };
