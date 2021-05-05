@@ -1,12 +1,13 @@
 import React from 'react';
 
-const ToDonesContainer = ({TODONES,UpdateItem}) => {
+const ToDonesContainer = ({TODONES,UpdateItem,DeleteItem}) => {
   
   const toDoNesItems = TODONES.map(el => {
     return (
       <div className="todones-item" key={el.id}>
         <p>{el.text}</p>
         <div className="actions">
+          <button className="btn" onClick={()=>DeleteItem(el.id)}>&#9850;</button>
           <button className="btn" onClick={()=>UpdateItem(el.id)}>&#8635;</button>
         </div>
       </div>

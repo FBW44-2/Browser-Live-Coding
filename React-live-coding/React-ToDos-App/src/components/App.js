@@ -1,32 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/App.scss";
 import Navigation from "./Navigation";
 import ToDosContainer from "./ToDosContainer";
 import ToDonesContainer from "./ToDonesContainer";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
 const App = () => {
-
   const [tasks, setTasks] = useState([
-    {id:uuid(), text: "Make a website", done: true },
-    {id:uuid(), text: "Make a website", done: true },
-    {id:uuid(), text: "Pay the rent", done: true },
-    {id:uuid(), text: "Call my mom", done: true },
-    {id:uuid(), text: "Walk the dog", done: false },
-    {id:uuid(), text: "Finish reading my book", done: true },
-    {id:uuid(), text: "Make more moneys", done: true },
-    {id:uuid(), text: "Make so moneys", done: false },
-    {id:uuid(), text: "Wash my face!", done: false }
+  /*   { id: uuid(), text: "Make a website", done: true },
+    { id: uuid(), text: "Make a website", done: true },
+    { id: uuid(), text: "Pay the rent", done: true },
+    { id: uuid(), text: "Call my mom", done: true },
+    { id: uuid(), text: "Walk the dog", done: false },
+    { id: uuid(), text: "Finish reading my book", done: true },
+    { id: uuid(), text: "Make more moneys", done: true },
+    { id: uuid(), text: "Make so moneys", done: false },
+    { id: uuid(), text: "Wash my face!", done: false }, */
   ]);
 
 
-  const AddItem=(text)=>{
-    let task = {id:uuid() , text : text, done:false}
-    setTasks( [ task,  ...tasks] )
-  }
+  useEffect(()=>{
+    //componentDIDMount
+    let data = (localStorage.getItem("todoItems"))
+  
+     if(data){
+      let parsedData=JSON.parse(data)
+      setTasks(parsedData)
+    } 
+  }, [])
 
-  const UpdateItem=(id)=>{
- /*    let updatedTasks = tasks.map(task=>{
+
+  const AddItem = (text) => {
+    let task = { id: uuid(), text: text, done: false };
+    localStorage.setItem("todoItems", JSON.stringify([task, ...tasks]));
+    setTasks([task, ...tasks]);
+  };
+
+  const UpdateItem = (id) => {
+    /*    let updatedTasks = tasks.map(task=>{
       if(task.id===id){
         task.done = !task.done
         return task;
@@ -39,22 +50,38 @@ const App = () => {
     }) 
       return task;
     })  */
-  /*   let updatedTasks = tasks.map(item=>item.id===id ? {...item,done:!item.done}:item)
-    setTasks(updatedTasks) */
+    let updatedTasks = tasks.map((item) =>
+      item.id === id ? { ...item, done: !item.done } : item
+    );
+    localStorage.setItem("todoItems", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
 
-    setTasks(tasks.map(item=>item.id===id ? {...item,done:!item.done}:item) )
+    /*    setTasks(tasks.map(item=>item.id===id ? {...item,done:!item.done}:item) ) */
+  };
 
-  }
+  const DeleteItem = (id) => {
+    let updatedItems= tasks.filter((item) => item.id !== id)
+    localStorage.setItem("todoItems", JSON.stringify(updatedItems));
+    setTasks(updatedItems);
 
+  };
 
-  const TODOS = tasks.filter(item=>!item.done)
-  const TODONES = tasks.filter(item=>item.done)
+  const TODOS = tasks.filter((item) => !item.done);
+  const TODONES = tasks.filter((item) => item.done);
 
   return (
     <div className="app">
       <Navigation></Navigation>
-      <ToDosContainer UpdateItem={UpdateItem}  AddItem={AddItem} TODOS= {TODOS} ></ToDosContainer>
-      <ToDonesContainer UpdateItem={UpdateItem} TODONES={TODONES} ></ToDonesContainer>
+      <ToDosContainer
+        UpdateItem={UpdateItem}
+        AddItem={AddItem}
+        TODOS={TODOS}
+      ></ToDosContainer>
+      <ToDonesContainer
+        DeleteItem={DeleteItem}
+        UpdateItem={UpdateItem}
+        TODONES={TODONES}
+      ></ToDonesContainer>
     </div>
   );
 };
