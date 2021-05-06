@@ -4,10 +4,14 @@ import Navigation from "./Navigation";
 import ToDosContainer from "./ToDosContainer";
 import ToDonesContainer from "./ToDonesContainer";
 import { v4 as uuid } from "uuid";
+import { HashRouter, Route, Switch } from "react-router-dom";
+import Help from "../views/Help";
+import NotFound from "../views/NotFound";
+import DetailedTaskComp from "./DetailedTaskComp";
 
 const App = () => {
   const [tasks, setTasks] = useState([
-  /*   { id: uuid(), text: "Make a website", done: true },
+    /*   { id: uuid(), text: "Make a website", done: true },
     { id: uuid(), text: "Make a website", done: true },
     { id: uuid(), text: "Pay the rent", done: true },
     { id: uuid(), text: "Call my mom", done: true },
@@ -18,17 +22,15 @@ const App = () => {
     { id: uuid(), text: "Wash my face!", done: false }, */
   ]);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     //componentDIDMount
-    let data = (localStorage.getItem("todoItems"))
-  
-     if(data){
-      let parsedData=JSON.parse(data)
-      setTasks(parsedData)
-    } 
-  }, [])
+    let data = localStorage.getItem("todoItems");
 
+    if (data) {
+      let parsedData = JSON.parse(data);
+      setTasks(parsedData);
+    }
+  }, []);
 
   const AddItem = (text) => {
     let task = { id: uuid(), text: text, done: false };
@@ -60,29 +62,49 @@ const App = () => {
   };
 
   const DeleteItem = (id) => {
-    let updatedItems= tasks.filter((item) => item.id !== id)
+    let updatedItems = tasks.filter((item) => item.id !== id);
     localStorage.setItem("todoItems", JSON.stringify(updatedItems));
     setTasks(updatedItems);
-
   };
 
   const TODOS = tasks.filter((item) => !item.done);
   const TODONES = tasks.filter((item) => item.done);
 
   return (
-    <div className="app">
-      <Navigation></Navigation>
-      <ToDosContainer
-        UpdateItem={UpdateItem}
-        AddItem={AddItem}
-        TODOS={TODOS}
-      ></ToDosContainer>
-      <ToDonesContainer
-        DeleteItem={DeleteItem}
-        UpdateItem={UpdateItem}
-        TODONES={TODONES}
-      ></ToDonesContainer>
-    </div>
+    <HashRouter>
+      <div className="app">
+        <Navigation></Navigation>
+        <Switch>
+          {/*  <Route path="/" component={}/> */}
+          {/*  <Route path="/" render={()=>(<><ToDosContainer /> <ToDonesContainer /> </>)} /> */}
+          <Route exact path="/">
+            <ToDosContainer
+              UpdateItem={UpdateItem}
+              AddItem={AddItem}
+              TODOS={TODOS}
+            />
+            <ToDonesContainer
+              DeleteItem={DeleteItem}
+              UpdateItem={UpdateItem}
+              TODONES={TODONES}
+            />
+          </Route>
+
+          <Route path="/help">
+            <Help />
+          </Route>
+
+          <Route path="/task/:text">
+            <DetailedTaskComp data = {tasks} />
+          </Route>
+    
+          <Route>
+            <NotFound/>
+          </Route>
+
+        </Switch>
+      </div>
+    </HashRouter>
   );
 };
 

@@ -1,14 +1,17 @@
-import React from 'react';
-import logo from '../images/logo.png';
+import React from "react";
+import logo from "../images/logo.png";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
     <nav>
       <div className="left">
-        <img src={logo} alt="Logo" />
+        <NavLink exact activeStyle={{border:"2px solid green"}} to="/">
+          <img src={logo} alt="Logo" style={{display:"block"}} />
+        </NavLink>
       </div>
       <div className="right">
-        <a href="#">Help</a>
+        <NavLink activeStyle={{backgroundColor:"white",color:"black"}} to="/help">Help</NavLink>
       </div>
     </nav>
   );

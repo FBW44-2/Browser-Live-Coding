@@ -1,11 +1,13 @@
 import React, { useRef ,useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ToDosContainer = ({TODOS , AddItem, UpdateItem}) => {
 
   const toDoItems = TODOS.map(el => {
     return (
       <div className="todo-item" key={el.id}>
-        <p>{el.text}</p>
+        {/* <p><Link to={ {pathname:`/task/${el.text}`, state:el} }>     {el.text}</Link> </p> */}
+        <p><Link to={`/task/${el.text}` }>     {el.text}</Link> </p>
         <div className="actions">
           <button className="btn" onClick={()=>UpdateItem(el.id)}>&#10004;</button>
         </div>
