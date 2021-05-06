@@ -1,7 +1,9 @@
-import React, { useRef ,useState } from 'react';
+import React, { useRef ,useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import {MyContext} from "../context/MyContext"
 
-const ToDosContainer = ({TODOS , AddItem, UpdateItem}) => {
+const ToDosContainer = () => {
+  const {TODOS, UpdateItem, AddItem }= useContext(MyContext)
 
   const toDoItems = TODOS.map(el => {
     return (

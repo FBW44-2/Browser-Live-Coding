@@ -69,6 +69,17 @@ $btnBg: #184b43;
         justify-content: space-between;
       }
     }
+    a{
+      color: white;
+      text-decoration: none;
+      padding: 5px;
+      border-radius: 5px;
+      &:hover{
+        background-color: white;
+        color: black;
+      }
+    }
+    
   }
   .todones-container {
     padding: 10px;
