@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 
 const ToDonesContainer = () => {
-  const {TODONES,UpdateItem,DeleteItem} =useContext(MyContext)
+  const {TODONES,dispatch} =useContext(MyContext)
   
   const toDoNesItems = TODONES.map(el => {
     return (
       <div className="todones-item" key={el.id}>
         <p>{el.text}</p>
         <div className="actions">
-          <button className="btn" onClick={()=>DeleteItem(el.id)}>&#9850;</button>
-          <button className="btn" onClick={()=>UpdateItem(el.id)}>&#8635;</button>
+          <button className="btn" onClick={()=>dispatch({type:"deleteitem",payload: el.id})}>&#9850;</button>
+          <button className="btn" onClick={()=>dispatch({type:"updateitem",payload:el.id})}>&#8635;</button>
         </div>
       </div>
     );
