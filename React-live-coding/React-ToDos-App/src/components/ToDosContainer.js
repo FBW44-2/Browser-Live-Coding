@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {MyContext} from "../context/MyContext"
 
 const ToDosContainer = () => {
-  const {TODOS, UpdateItem, AddItem }= useContext(MyContext)
+  const {TODOS, dispatch }= useContext(MyContext)
 
   const toDoItems = TODOS.map(el => {
     return (
@@ -11,7 +11,7 @@ const ToDosContainer = () => {
         {/* <p><Link to={ {pathname:`/task/${el.text}`, state:el} }>     {el.text}</Link> </p> */}
         <p><Link to={`/task/${el.text}` }>     {el.text}</Link> </p>
         <div className="actions">
-          <button className="btn" onClick={()=>UpdateItem(el.id)}>&#10004;</button>
+          <button className="btn" onClick={()=>dispatch({type:"updateitem", payload:el.id})}>&#10004;</button>
         </div>
       </div>
     );
@@ -25,7 +25,7 @@ const handleSubmit=(e)=>{
   console.log(input.current.value)
   setDisabled(true)
 
-  AddItem(input.current.value)
+  dispatch({type:"additem", payload:input.current.value})
   /* e.target.reset() */
   input.current.value=""
   setTimeout(()=>{setDisabled(false)},2000)

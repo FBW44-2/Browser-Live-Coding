@@ -1,11 +1,28 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useEffect , useReducer} from 'react'
 import { MyContext } from './MyContext'
 import { v4 as uuid } from "uuid";
 
 
+
+const Reducer=(state,action)=>{
+   switch(action.instruction){
+     case "additem":
+       return {tasks:[...state.tasks,action.value ] }
+     default: 
+      return state
+   }
+}
+
+const initialState={
+  tasks:[]
+}
 export default function Container(props) {
 
-    const [tasks,setTasks]=useState([])
+ /*  console.log(useReducer(Reducer, initialState)) */
+  const [state,dispatch] = useReducer(Reducer, initialState)
+
+
+
 
     useEffect(() => {
         //componentDIDMount
@@ -60,7 +77,7 @@ export default function Container(props) {
     
 
     return (
-       <MyContext.Provider value={{tasks,setTasks,TODOS,TODONES, AddItem,UpdateItem,DeleteItem}}>
+       <MyContext.Provider value={{tasks,setTasks,TODOS,TODONES, dispatch}}>
             {props.children}
        </MyContext.Provider>
     )
