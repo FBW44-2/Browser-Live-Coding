@@ -11,5 +11,5 @@ let sum=(a,b)=>{
 
 /* CommonJS syntac */
 module.exports = a  //default export 
-/* module.exports = {sum} */ // named export {} overwriting {sum}
-/* module.exports.sum = sum */       /* {} = {sum:sum} */
+/* module.exports = {sum} */ // defaultexport {} overwriting {sum}
+/* module.exports.sum = sum */  /* named export */    /* {} = {sum:sum} */

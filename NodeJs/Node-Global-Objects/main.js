@@ -62,7 +62,7 @@ console.log(numbers) */
 console.log(process.cwd()) */
 
 
-/* ECMAscript syntac */
+/* ECMAscript module syntac */
 
 /*  import a ,{sum} from "./index.js"
 
