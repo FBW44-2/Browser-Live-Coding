@@ -2,7 +2,6 @@
 
 
 const fs =require("fs")
-const { promises } = require("stream")
 
 
 //create directory
