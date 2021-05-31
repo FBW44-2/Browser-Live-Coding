@@ -1,0 +1,17 @@
+{
+  "name": "math-node-mypackage",
+  "version": "2.0.0",
+  "description": "Mathematical operation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "math",
+    "sum",
+    "operation",
+    "division"
+  ],
+  "author": "naqvi",
+  "license": "ISC"
+}
