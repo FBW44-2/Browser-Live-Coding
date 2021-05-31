@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-cli-package",
+  "version": "1.0.0",
+  "description": "cli package for testing",
+  "main": "index.js",
+  "bin": {
+    "fetchusers": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "naqvi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
