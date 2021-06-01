@@ -9,13 +9,27 @@ const port = 3000;
     //ending your response cycle.
     res.end()
 } ) */
+
 //reading and sending html page
 const server = http.createServer( (req,res)=>{
-
+    console.log("received request method is  ", req.method)
     //read html file using fs module
     let htmlData = fs.readFileSync("./index.html")
-    // send back response to client  
-    res.write(htmlData)
+    let contactData =fs.readFileSync("./Contact.html")
+    let aboutData =fs.readFileSync("./About.html")
+
+    if(req.url==="/"){
+         // send back response to client  
+    res.write(htmlData) 
+    }else if(req.url==="/about"){
+        res.write(aboutData)
+    }else if(req.url==="/contact"){
+        res.write(contactData)
+    }
+    else{
+        res.writeHead(403)
+        res.write("Page not Found")
+    }
     //ending your response cycle.
     res.end()
 } )
