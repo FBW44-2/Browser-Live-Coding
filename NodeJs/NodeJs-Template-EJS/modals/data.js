@@ -1,7 +1,5 @@
 const data={
-    name:"Mike",
-    age:24,
-    students:["John","Mike","Misbah"],
-    status:false
+   user:null,
+   isLogin:false
 }
 module.exports=data

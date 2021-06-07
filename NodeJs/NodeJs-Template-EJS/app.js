@@ -5,13 +5,18 @@ const PORT = 3000;
 //set template engine for express
 app.set("view engine","ejs")
 
+
 //middleware to serve static files
 app.use(express.static(__dirname+"/views")) 
 
-
-
-
 app.use(Route)
 
-
 app.listen(PORT,()=>console.log("server is running on port : ",PORT))
+
+
+
+
+/* <%= %> values
+<% %> tags for writing Js 
+<%- include(filename) %> include any file */
+
