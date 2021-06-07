@@ -8,8 +8,15 @@
 <body>
     <%- include("navigation") %>
     <h1>Login Page</h1>
-    <form action="" method="">
-        
+    <form action="/login" method="POST">
+        <label>Username: <input type="text" name="username"></label><br>
+        <label>Password: <input type="password" name="password"></label><br>
+        <input type="submit" value="login">
     </form>
+    <% if(isError){ %>
+        <p><%= errorMessage %></p>
+    <%}%>
+
+
 </body>
 </html>

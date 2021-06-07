@@ -1,26 +1,23 @@
-const express=require("express")
-const Route = express.Router()
-const data =require("../modals/data")
+const express = require("express");
+const Route = express.Router();
+const data = require("../modals/data");
+const {getHome,getLogin,getProfile,getSignup,postLogin} = require("../controllers/mainControllers")
 
 //Home page
-Route.get("/",(req,res)=>{
-    res.render("index",data)
-})
+Route.get("/",getHome);
 
 // login page
-Route.get("/login",(req,res)=>{
-    res.render("login",data)
-})
+Route.get("/login",getLogin );
+
+//post login request
+Route.post("/login",postLogin);
 
 //signup page
-Route.get("/signup",(req,res)=>{
-    res.render("signup",data)
-})
+Route.get("/signup", getSignup);
 
 //profile page
-Route.get("/profile",(req,res)=>{
-    res.render("profile",data)
-})
+//protected route
+Route.get("/profile",getProfile);
 
 
-module.exports= Route
+module.exports = Route;

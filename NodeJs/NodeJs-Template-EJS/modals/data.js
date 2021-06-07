@@ -1,5 +1,9 @@
 const data={
    user:null,
-   isLogin:false
+   isLogin:false,
+   isError:false,
+   errorMessage:""
 }
+
+const users=[{},{}]
 module.exports=data

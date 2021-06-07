@@ -8,6 +8,10 @@ app.set("view engine","ejs")
 
 //middleware to serve static files
 app.use(express.static(__dirname+"/views")) 
+//get json data and express.json will parse that data
+app.use(express.json())
+//get form-urlendcoded data
+app.use(express.urlencoded({extended:true}))
 
 app.use(Route)
 
