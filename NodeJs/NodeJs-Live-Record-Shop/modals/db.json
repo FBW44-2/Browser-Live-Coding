@@ -41,6 +41,20 @@
       "first_name": "Rachel",
       "last_name": "Howell",
       "avatar": "https://reqres.in/img/faces/12-image.jpg"
+    },
+    {
+      "id": 200,
+      "email": "testinguser@reqres.in",
+      "first_name": "test",
+      "last_name": "working",
+      "avatar": "https://reqres.in/img/faces/7-image.jpg"
+    },
+    {
+      "id": 300,
+      "email": "usernew@reqres.in",
+      "first_name": "test",
+      "last_name": "working",
+      "avatar": "https://reqres.in/img/faces/7-image.jpg"
     }
   ]
 }

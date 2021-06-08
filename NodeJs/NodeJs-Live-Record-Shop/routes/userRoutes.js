@@ -49,19 +49,26 @@ Route.post("/",(req,res)=>{
 //get patch request (update)
 
 Route.patch("/:id",(req,res)=>{
-  
+  const {id} =req.params
   /*   console.log(req.params)
     console.log(req.body) */
-    //targeting that specfic user 
-    const user=users.find(item=>item.id===Number(req.params.id))
-    user.id=req.body.id
+    //targeting that specfic user and update avatar property
+  db.get("users").find({id:Number(id)}).assign(req.body).write()
+
+  //finding updated user in db
+    const user = db.get("users").find({id:Number(id)}).value()
+    
     res.json({success:true, data:user})
 })
 
 //get delete request (delete)
 Route.delete("/:id",(req,res)=>{
   
-    users  = users.filter(item=>item.id!== Number(req.params.id))
+    const {id}=req.params
+//deleting specific user from db
+    db.get("users").remove({id:Number(id)}).write()
+
+
     res.json({success:true, data:"User Deleted"})
 })
 
