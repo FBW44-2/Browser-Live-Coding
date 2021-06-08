@@ -1,3 +1,4 @@
+const data = require("../modals/data");
 exports.getHome = (req, res) => {
   res.render("index", data);
 };

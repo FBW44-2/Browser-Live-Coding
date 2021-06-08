@@ -1,6 +1,5 @@
 const express = require("express");
 const Route = express.Router();
-const data = require("../modals/data");
 const {getHome,getLogin,getProfile,getSignup,postLogin} = require("../controllers/mainControllers")
 
 //Home page
