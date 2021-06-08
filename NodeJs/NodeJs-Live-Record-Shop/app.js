@@ -1,5 +1,4 @@
 const express=require("express")
-const logger = require("morgan")
 const port = 3000;
 const userRoutes= require("./routes/userRoutes")
 
