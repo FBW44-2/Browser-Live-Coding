@@ -59,6 +59,10 @@
     {
       "first_name": "Naqvi"
     },
-    {}
+    {},
+    {
+      "email": "test@gmail.com",
+      "age": 34
+    }
   ]
 }

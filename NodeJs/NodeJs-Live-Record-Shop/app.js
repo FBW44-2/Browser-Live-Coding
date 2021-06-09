@@ -2,9 +2,17 @@ const express=require("express")
 const port = 3000;
 const userRoutes= require("./routes/userRoutes")
 const createError = require("http-errors")
-
+const cors=require("cors")
 //create express server
 const app = express()
+
+//cors middlware
+/* app.use(cors({origin:"*"})) */
+app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Origin","*")
+    res.header("Access-Control-Allow-Methods",["GET","POST","PATCH","DELETE","OPTIONS"])
+    next()
+})
 
 //express middleware
 //parsing req.body
@@ -28,7 +36,9 @@ function clgValue(req,res,next){
 app.use(printTime)
 app.use(clgValue)
 
-
+app.get("/",(req,res)=>{
+    res.sendFile(__dirname+"/views/index.html")
+})
 app.use("/users",userRoutes)
 
 
