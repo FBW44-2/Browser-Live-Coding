@@ -1,6 +1,7 @@
 const express=require("express")
 const port = 3000;
 const userRoutes= require("./routes/userRoutes")
+const createError = require("http-errors")
 
 //create express server
 const app = express()
@@ -27,11 +28,21 @@ function clgValue(req,res,next){
 app.use(printTime)
 app.use(clgValue)
 
+
 app.use("/users",userRoutes)
 
 
+// 404 page not found middleware
+app.use((req,res,next)=>{
+    let err = createError(404,"page not found")
+   /*  let err = new createError.NotFound() */
+    next(err)
+})
 
-
+//error handling middleware/ universal error handler
+app.use((err,req,res,next)=>{
+    res.status(err.status || 500).send({success:false, message:err.message})
+})
 
 
 

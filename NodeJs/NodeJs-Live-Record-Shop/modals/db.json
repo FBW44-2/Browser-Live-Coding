@@ -55,6 +55,10 @@
       "first_name": "test",
       "last_name": "working",
       "avatar": "https://reqres.in/img/faces/7-image.jpg"
-    }
+    },
+    {
+      "first_name": "Naqvi"
+    },
+    {}
   ]
 }

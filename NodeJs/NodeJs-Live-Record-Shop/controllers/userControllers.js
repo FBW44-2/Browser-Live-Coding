@@ -1,26 +1,34 @@
 //import db from database 
 const db = require("../modals/database")
+const createError = require("http-errors")
 
 exports.getUsers=(req,res,next)=>{
     let users = db.get("users").value() 
     res.json({success:true, data:users})
 }
 
-exports.getSingleUser= (req,res)=>{
+exports.getSingleUser= (req,res,next)=>{
   
     const {id} = req.params  
     const user= db.get("users").find({id:Number(id)}).value()
     if(user){
        return res.json({success:true, data:user}) 
     }else{
-        return res.json({success:false, message:"no such user found in our collection"})
+       next(new createError.BadRequest("no such user found in our collection"))
     }  
 }
 
-exports.postUser=(req,res)=>{
+exports.postUser=(req,res,next)=>{
     /*   console.log(req.body)  */
-      db.get("users").push(req.body).write()
-      res.json({success:true, data:req.body})
+    const {first_name, last_name, email} = req.body
+    if(first_name!=="" && last_name!=="" && email !== ""){
+            db.get("users").push(req.body).write()
+            return res.json({success:true, data:req.body})
+    }else{
+        next(new createError.BadRequest("please provide with all values"))
+    }
+  
+     
 }
 
 
