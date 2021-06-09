@@ -34,8 +34,13 @@ app.use("/users",userRoutes)
 
 // 404 page not found middleware
 app.use((req,res,next)=>{
+   /*  let err = new Error("page not found") */
+   /*  err.status=404; */
+
+/*  let err = new createError.NotFound() */
+
     let err = createError(404,"page not found")
-   /*  let err = new createError.NotFound() */
+   
     next(err)
 })
 
