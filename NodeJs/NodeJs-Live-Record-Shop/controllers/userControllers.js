@@ -1,5 +1,5 @@
 //import db from database 
-const db = require("../modals/database")
+const db = require("../models/database")
 const createError = require("http-errors")
 
 exports.getUsers=(req,res,next)=>{

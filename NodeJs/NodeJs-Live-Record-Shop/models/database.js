@@ -3,7 +3,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 
 
  
-const file = new FileSync('./modals/db.json')
+const file = new FileSync('./models/db.json')
 const db = lowdb(file)
  
 
