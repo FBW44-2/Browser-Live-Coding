@@ -2,6 +2,8 @@ const express=require("express")
 require("./mongooseConnection")
 const port = 3000;
 const userRoutes= require("./routes/userRoutes")
+const recordRoutes= require("./routes/recordRoutes")
+const orderRoutes= require("./routes/orderRoutes")
 const createError = require("http-errors")
 const cors=require("cors")
 //create express server
@@ -41,6 +43,8 @@ app.get("/",(req,res)=>{
     res.sendFile(__dirname+"/views/index.html")
 })
 app.use("/users",userRoutes)
+app.use("/records",recordRoutes )
+app.use("/orders",orderRoutes )
 
 
 // 404 page not found middleware
