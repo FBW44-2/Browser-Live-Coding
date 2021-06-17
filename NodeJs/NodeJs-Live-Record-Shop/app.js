@@ -1,4 +1,5 @@
 const express=require("express")
+require("./mongooseConnection")
 const port = 3000;
 const userRoutes= require("./routes/userRoutes")
 const createError = require("http-errors")

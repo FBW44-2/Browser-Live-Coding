@@ -10,10 +10,10 @@ const UserSchema = new Schema({
     password:{type:String,required:true}
 })
 
-const User = mongoose.model("users",UserSchema)
+const UsersModel = mongoose.model("users",UserSchema)
 
 
-module.exports= User;
+module.exports= UsersModel;
 
 
 
