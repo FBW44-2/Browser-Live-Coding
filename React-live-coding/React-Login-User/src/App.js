@@ -14,10 +14,7 @@ function App() {
       <div className="App">
         <Navbar />
         <h1>Context API</h1>
-        {isLogin? <Profile /> : <Login /> }
-        
-
-       
+        {isLogin? <Profile /> : <Login /> }  
       </div>
     </MyContext.Provider>
   );

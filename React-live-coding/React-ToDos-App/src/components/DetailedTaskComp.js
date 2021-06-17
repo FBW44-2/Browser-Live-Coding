@@ -6,7 +6,7 @@ export default function DetailedTaskComp() {
   const {tasks} = useContext(MyContext)
 
     const {text}=useParams()
-    console.log(text)
+    console.log("text",text)
 
     let searchTask= tasks.find(item=>item.text===text)
     console.log(searchTask, "search item")
