@@ -16,7 +16,6 @@ app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Methods",["GET","POST","PATCH","DELETE","OPTIONS"])
     next()
 })
-
 //express middleware
 //parsing req.body
 app.use(express.json())
@@ -42,7 +41,8 @@ app.use(clgValue)
 app.get("/",(req,res)=>{
     res.sendFile(__dirname+"/views/index.html")
 })
-app.use("/users",userRoutes)
+
+app.use("/users",  userRoutes)
 app.use("/records",recordRoutes )
 app.use("/orders",orderRoutes )
 

@@ -10,7 +10,7 @@ const {
 } = require("../controllers/userControllers");
 //import data from modals
 /* const users = require("../modals/data") */
-
+const validateSanitize= require("../middlewares/validation-sanitization")
 //CRUD operation
 //create
 //read
@@ -24,7 +24,12 @@ Route.get("/", getUsers);
 //route to get a single user
 Route.get("/:id", getSingleUser);
 //get post request (create a new user)
-Route.post("/", postUser);
+/* ABC@GMail.COm => abc@gmail.com */
+Route.post(
+  "/",
+  validateSanitize, 
+  postUser
+);
 //get patch request (update)
 Route.patch("/:id", patchUser);
 //get delete request (delete)

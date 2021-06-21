@@ -2,6 +2,8 @@
 const UsersModel = require("../models/UserSchema");
 const createError = require("http-errors");
 
+const {validationResult} =require("express-validator")
+
 exports.getUsers = async (req, res, next) => {
   try {
       //get all users from users collection
@@ -28,17 +30,17 @@ exports.getSingleUser = async (req, res, next) => {
 };
 
 exports.postUser = async (req, res, next) => {
- //add new user into our users collection
-    try{
-        const user = new UsersModel(req.body)
-        await user.save()
-        res.send({success:true, data:user})
-    }
-    catch(err){
-        console.log(err.message)
-        next(err)
-    }
-
+//add new user into our users collection
+try{
+  const user = new UsersModel(req.body)
+  await user.save()
+  res.send({success:true, data:user})
+}
+catch(err){
+  console.log(err.message)
+  next(err)
+}
+ 
 };
 
 exports.patchUser = async (req, res, next) => {
