@@ -2,8 +2,6 @@
 const UsersModel = require("../models/UserSchema");
 const createError = require("http-errors");
 
-const {validationResult} =require("express-validator")
-
 exports.getUsers = async (req, res, next) => {
   try {
       //get all users from users collection
@@ -18,7 +16,11 @@ exports.getSingleUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     //get a single user from users collection
-    const user = await UsersModel.findById(id);
+    const user = await UsersModel.findById(id).select("-__v -password -id");
+    /* console.log(user.firstname + " " + user.lastname) */
+    user.fullname="Naqvi Ali"
+    await user.save();
+    console.log(user)
     if (user) {
       return res.json({ success: true, data: user });
     } else {
