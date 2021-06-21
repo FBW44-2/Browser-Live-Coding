@@ -5,15 +5,21 @@ let validateSanitize= [  check("email").isEmail().normalizeEmail().withMessage("
 check("password")
   .isLength({ min: 3 })
   .withMessage("password is too short, minimum 3 characters"),
-check("firstname").exists().trim().escape().withMessage("please provide valid name") ,
+check("firstname").not().isEmpty().trim().escape().withMessage("please provide valid name") ,
 (req,res,next)=>{
     console.log("I am last in validation")
     const result= validationResult(req)
     if(result.isEmpty()){
         next()
     }else{
-    
-        next(result.errors)
+        // {status: 400, message: {email:"email is invalid", password: "it is too short" } }
+        let errorObject= result.errors.reduce((acc,item)=>{
+               acc.message={...acc.message ,[item.param]:item.msg}
+               return acc;
+        }, {} )
+        errorObject.status= 400;
+
+        next(errorObject)
     }
     
 }
