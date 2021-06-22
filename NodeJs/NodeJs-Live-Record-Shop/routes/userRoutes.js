@@ -7,6 +7,7 @@ const {
   postUser,
   patchUser,
   deleteUser,
+  loginUser
 } = require("../controllers/userControllers");
 //import data from modals
 /* const users = require("../modals/data") */
@@ -30,6 +31,7 @@ Route.post(
   validateSanitize, 
   postUser
 );
+Route.post("/login",loginUser)
 //get patch request (update)
 Route.patch("/:id", patchUser);
 //get delete request (delete)

@@ -1,6 +1,8 @@
 //import db from database
 const UsersModel = require("../models/UserSchema");
 const createError = require("http-errors");
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 exports.getUsers = async (req, res, next) => {
   try {
@@ -31,9 +33,16 @@ exports.getSingleUser = async (req, res, next) => {
   }
 };
 
+//signup
 exports.postUser = async (req, res, next) => {
 //add new user into our users collection
 try{
+  //hash password
+/*   let salt = bcrypt.genSaltSync(10) */
+/*   console.log(salt) */
+ /*  let hashedPassword= bcrypt.hashSync(req.body.password,salt) */
+ /*  console.log(hashedPassword) */
+
   const user = new UsersModel(req.body)
   await user.save()
   res.send({success:true, data:user})
@@ -69,3 +78,28 @@ exports.deleteUser = async (req, res, next) => {
         next(err)
     }
 };
+
+
+exports.loginUser=async (req,res,next)=>{
+  try{
+    const user= await UsersModel.findOne({email:req.body.email})
+    if(!user){
+      next(new createError.NotFound("No such user found in DB"))
+    }else{
+      let check = bcrypt.compareSync(req.body.password,user.password)
+
+      if(!check) {
+        next(new createError.NotFound("password doesn't match"))
+      }else{
+        const token = jwt.sign({id:user._id,email:user.email} , "secretkeyfromnaqvi")
+        res.header("x-auth",token)
+      /*   res.cookie("x-auth",token) */
+        res.send({success:true, message:"authenticated"})
+      }
+      
+    }
+  }catch(err){
+    next(err)
+  }
+  
+}
