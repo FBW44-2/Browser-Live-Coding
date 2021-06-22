@@ -2,15 +2,13 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 /* const UserModel = require("./UserSchema") */
 const OrderSchema = new Schema({
-  quantity: {
-    type: Number,
-    required: true
-  },
-  record: {
-    type: String,
-    required: true
-  }/* ,
-  user:{type:String, required:true} */
+  records: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "records",
+    },
+  ],
+  user: { type: Schema.Types.ObjectId, required: true, ref: "users" },
 });
 
 /* OrderSchema.virtual("deliveryAddress").get(async function(){
@@ -18,6 +16,5 @@ const OrderSchema = new Schema({
     return user.address;
 })
  */
-
 
 module.exports = mongoose.model("orders", OrderSchema);

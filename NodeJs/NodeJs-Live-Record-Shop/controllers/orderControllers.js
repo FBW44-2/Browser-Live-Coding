@@ -5,7 +5,7 @@ const createError = require("http-errors");
 exports.getOrders = async (req, res, next) => {
   try {
       //get all order from order collection
-    let order = await OrdersModel.find({});
+    let order = await OrdersModel.find({}).populate("records").populate("user");
     res.json({ success: true, data: order });
   } catch (err) {
     next(err);
@@ -16,7 +16,7 @@ exports.getSingleOrder = async (req, res, next) => {
   try {
     const { id } = req.params;
     //get a single order from order collection
-    const order = await OrdersModel.findById(id);
+    const order = await OrdersModel.findById(id).populate("records").populate("user");
     if (order) {
       return res.json({ success: true, data: order });
     } else {
