@@ -2,7 +2,11 @@
 const UsersModel = require("../models/UserSchema");
 const createError = require("http-errors");
 const bcrypt = require("bcrypt")
+//bcrypt.hashSync(password,salt) create hash password
+//bcrypt.compareSync(password,hashedpassword) 
 const jwt = require("jsonwebtoken")
+//jwt.sign(payload, secretKey) create token
+//jwt.verify(token, secretKey) verify token
 
 exports.getUsers = async (req, res, next) => {
   try {
