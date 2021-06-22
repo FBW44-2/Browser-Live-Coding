@@ -6,9 +6,11 @@ const jwt = require("jsonwebtoken")
 
 exports.getUsers = async (req, res, next) => {
   try {
-      //get all users from users collection
+         //get all users from users collection
     let users = await UsersModel.find({});
     res.json({ success: true, data: users });
+ 
+   
   } catch (err) {
     next(err);
   }
@@ -79,13 +81,14 @@ exports.deleteUser = async (req, res, next) => {
     }
 };
 
-
+// /users/login POST email, password=123456
 exports.loginUser=async (req,res,next)=>{
   try{
     const user= await UsersModel.findOne({email:req.body.email})
     if(!user){
       next(new createError.NotFound("No such user found in DB"))
     }else{
+      //compare password and hash password
       let check = bcrypt.compareSync(req.body.password,user.password)
 
       if(!check) {

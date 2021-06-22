@@ -1,6 +1,7 @@
 const express = require("express");
 
 const Route = express.Router();
+const {auth}= require("../middlewares/Auth")
 const {
   getUsers,
   getSingleUser,
@@ -21,9 +22,9 @@ const validateSanitize= require("../middlewares/validation-sanitization")
 //creating routes
 //get request for all users
 
-Route.get("/", getUsers);
+Route.get("/", auth, getUsers);
 //route to get a single user
-Route.get("/:id", getSingleUser);
+Route.get("/:id",auth,  getSingleUser);
 //get post request (create a new user)
 /* ABC@GMail.COm => abc@gmail.com */
 Route.post(
@@ -33,9 +34,9 @@ Route.post(
 );
 Route.post("/login",loginUser)
 //get patch request (update)
-Route.patch("/:id", patchUser);
+Route.patch("/:id",auth,  patchUser);
 //get delete request (delete)
-Route.delete("/:id", deleteUser);
+Route.delete("/:id",auth,  deleteUser);
 
 /* Route.route("/")
 .get(getUsers)

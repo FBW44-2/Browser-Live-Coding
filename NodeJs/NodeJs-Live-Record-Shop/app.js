@@ -6,6 +6,7 @@ const recordRoutes= require("./routes/recordRoutes")
 const orderRoutes= require("./routes/orderRoutes")
 const createError = require("http-errors")
 const {cors,printTime,clgValue} = require("./middlewares/CustomeMiddlewares")
+const {auth} =require("./middlewares/Auth")
 //create express server
 const app = express()
 
@@ -25,9 +26,9 @@ app.use(clgValue)
 app.get("/",(req,res)=>{
     res.sendFile(__dirname+"/views/index.html")
 })
-app.use("/users",  userRoutes)
-app.use("/records",recordRoutes )
-app.use("/orders",orderRoutes )
+app.use("/users", userRoutes)
+app.use("/records",auth, recordRoutes )
+app.use("/orders",auth, orderRoutes )
 
 
 // 404 page not found middleware
