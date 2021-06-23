@@ -5,21 +5,21 @@ const userRoutes= require("./routes/userRoutes")
 const recordRoutes= require("./routes/recordRoutes")
 const orderRoutes= require("./routes/orderRoutes")
 const createError = require("http-errors")
-const {cors,printTime,clgValue} = require("./middlewares/CustomeMiddlewares")
+const cors= require("cors")
+/* const {cors,printTime,clgValue} = require("./middlewares/CustomeMiddlewares") */
 const {auth} =require("./middlewares/Auth")
 //create express server
 const app = express()
 
 //cors middlware
-/* app.use(cors({origin:"*"})) */
-app.use(cors)
+ app.use(cors({origin:"*"})) 
 //express middleware
 //parsing req.body
 app.use(express.json())
 //external middleware
 /* app.use(logger("combined")) */
-app.use(printTime)
-app.use(clgValue)
+/* app.use(printTime)
+app.use(clgValue) */
 
 
 //Endpoints //Routes

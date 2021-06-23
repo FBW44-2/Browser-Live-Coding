@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import MyContext from "../context/MyContext"
 export default function Login(props) {
-
+console.log(props)
 const {setUser,setIsLogin} = useContext(MyContext)
 
     const loginForm=(e)=>{
@@ -21,7 +21,6 @@ const {setUser,setIsLogin} = useContext(MyContext)
         .then(res=>{ 
                 let token = res.headers.get("x-auth")
                 localStorage.setItem("x-auth",token)
-
             return res.json()
             })
         .then(result=>{

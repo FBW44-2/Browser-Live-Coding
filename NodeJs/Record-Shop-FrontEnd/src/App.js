@@ -6,6 +6,8 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Signup from "./components/Signup"
 import Login from './components/Login';
+import Profile from './components/Profile';
+import Records from './components/Records';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/signup" component={Signup}/>
         <Route path="/login" component={Login}/>
+        <Route path="/profile" component={Profile}/>
+        <Route path="/records" component={Records}/>
       </Switch>
 
     </div>
