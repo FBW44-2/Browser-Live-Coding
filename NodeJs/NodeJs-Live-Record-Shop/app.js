@@ -12,7 +12,7 @@ const {auth} =require("./middlewares/Auth")
 const app = express()
 
 //cors middlware
- app.use(cors({origin:"*"})) 
+ app.use(cors({origin:"*",exposedHeaders:"x-auth"})) 
 //express middleware
 //parsing req.body
 app.use(express.json())
