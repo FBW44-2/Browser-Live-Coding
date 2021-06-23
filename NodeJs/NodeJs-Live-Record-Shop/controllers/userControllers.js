@@ -88,7 +88,7 @@ exports.deleteUser = async (req, res, next) => {
 // /users/login POST email, password=123456
 exports.loginUser=async (req,res,next)=>{
   try{
-    const user= await UsersModel.findOne({email:req.body.email})
+    const user = await UsersModel.findOne({email:req.body.email})
     if(!user){
       next(new createError.NotFound("No such user found in DB"))
     }else{
@@ -101,7 +101,7 @@ exports.loginUser=async (req,res,next)=>{
         const token = jwt.sign({id:user._id,email:user.email} , "secretkeyfromnaqvi")
         res.header("x-auth",token)
       /*   res.cookie("x-auth",token) */
-        res.send({success:true, message:"authenticated"})
+        res.send({success:true, data:user})
       }
       
     }
